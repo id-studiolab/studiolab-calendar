@@ -1,0 +1,152 @@
+@prince-pdf {
+  prince-pdf-page-layout: two-page-left;
+}
+
+@page {
+  size: 14cm 33.5cm;
+
+  margin: 5mm;
+  margin-inside: 0;
+}
+
+.page.cover {
+  margin-inside: 5mm;
+}
+
+* {
+  font-family: "Lato";
+}
+
+.page {
+  break-after: page;
+}
+
+.symmetric-flex() {
+  flex-direction: row;
+  .page.right & {
+    flex-direction: row-reverse;
+  }
+}
+
+.daybox {
+  background: rgb(230, 230, 230);
+  font-weight: bolder;
+  text-align: outside;
+  text-transform: lowercase;
+
+  width: 100%;
+  height: 2cm;
+
+  display: flex;
+  .symmetric-flex();
+  flex-wrap: nowrap;
+  align-items: center;
+
+  .date-info {
+    display: block;
+    font-size: 50pt;
+    padding: 0 4mm;
+
+    .page.left & {
+      border-right: 3mm solid white;
+    }
+    .page.right & {
+      border-left: 3mm solid white;
+    }
+  }
+
+  .extra-info {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-outside: 4mm;
+
+    font-size: 1.2em;
+
+    p {
+      margin: 0;
+      padding: 0;
+      text-align: outside;
+      width: 100%;
+    }
+
+    > * {
+      display: flex;
+      .symmetric-flex();
+      flex-wrap: nowrap;
+      align-items: baseline;
+    }
+  }
+}
+
+.hourlist {
+  height: 29cm;
+  margin-top: 0.5cm;
+
+  colgroup {
+    col {
+      width: 100% / 3;
+    }
+
+    .hour-col {
+      width: 0;
+    }
+  }
+
+  thead {
+    text-align: center;
+  }
+
+  tbody,
+  .hour-col,
+  .hour-cell {
+    font-variant: prince-opentype(tnum);
+    text-align: center;
+  }
+
+  tbody td {
+    border-left: 1px solid rgb(121, 121, 121);
+
+    &.hour-cell {
+      &,
+      + td {
+        border-left: none;
+      }
+    }
+  }
+
+  .hour-cell {
+    padding: 0 0.5em;
+    color: lighten(black, 25%);
+
+    .hour-num {
+      width: 2ch;
+      text-align: right;
+    }
+    .hour-sep {
+      width: 1ch;
+      text-align: center;
+    }
+    .hour-min {
+      width: 2ch;
+      text-align: left;
+    }
+    .empty {
+      opacity: 0.1;
+    }
+  }
+
+  tbody {
+    font-size: 0.8em;
+
+    tr:nth-child(2n) {
+      background: rgb(230, 230, 230);
+    }
+
+    tr:not(.active) {
+      // background: rgb(230, 230, 230);
+      opacity: 0.3;
+    }
+  }
+}

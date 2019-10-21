@@ -1,0 +1,92 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Calendar
+    link(rel="stylesheet" href="./main.less")
+
+  body
+
+    .page.cover
+      h1
+        | StudioLab Calendar
+        |
+        = year
+      p= "Generated on " + new Date()
+
+    mixin daybox(date,showExtra)
+      .daybox
+        p.date-info
+          span= date.toLocaleString({ day: "numeric" })
+
+        .extra-info
+          p.month-info
+            span &nbsp;
+            span= date.toLocaleString({ month: "long" })
+
+          p.week-info
+            span= date.toLocaleString({ weekday: "long" })
+            span ,&nbsp;
+            span= "week " + date.weekNumber
+
+    mixin hourcell(hour)
+      td.hour-cell
+        - var hour_num = hour.date.hour.toString("10")
+        - var hour_min = hour.date.minute.toString("10").padStart(2, "0")
+        - var emptyMin = hour.date.minute === 0
+        span.hour-num.empty= hour_num.length === 1 ? "0" : ""
+        span.hour-num= hour_num
+        span(class={"empty": emptyMin})
+          span.hour-sep :
+          span.hour-min= hour_min
+
+    each day in days
+      .page.left
+        +daybox(day.date,true)
+
+        table.hourlist(cellspacing="0" cellpadding="0")
+          colgroup
+            col.hour-col
+            col
+            col
+            col
+
+          thead
+            tr
+              td
+              td Say
+              td Talk
+              td Join
+
+          tbody
+            each hour in day.hours
+              tr(class={active: hour.active})
+                +hourcell(hour)
+                td
+                td
+                td
+
+      .page.right
+        +daybox(day.date, false)
+
+        table.hourlist(cellspacing="0" cellpadding="0")
+          colgroup
+            col
+            col
+            col
+            col.hour-col
+
+          thead
+            tr
+              td Tell
+              td Show
+              td Hatch
+              td
+
+          tbody
+            each hour in day.hours
+              tr(class={active: hour.active})
+                td
+                td
+                td
+                +hourcell(hour)
