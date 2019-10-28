@@ -1,16 +1,10 @@
 @prince-pdf {
-  prince-pdf-page-layout: two-page-left;
+  prince-pdf-page-layout: single-page;
 }
 
 @page {
-  size: 14cm 33.5cm;
-
+  size: A4;
   margin: 5mm;
-  margin-inside: 0;
-}
-
-.page.cover {
-  margin-inside: 5mm;
 }
 
 * {
@@ -81,12 +75,12 @@
 }
 
 .hourlist {
-  height: 29cm;
-  margin-top: 0.5cm;
+  height: 26.3cm;
+  margin-top: 0.2cm;
 
   colgroup {
     col {
-      width: 100% / 3;
+      width: 100% / 6;
     }
 
     .hour-col {
@@ -117,7 +111,8 @@
   }
 
   .hour-cell {
-    padding: 0 0.5em;
+    font-size: 10pt;
+    padding: 0 0.8em;
     color: lighten(black, 25%);
 
     .hour-num {
