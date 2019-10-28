@@ -55,6 +55,7 @@ const synthesize = data => {
       currentDay.year === duringYear;
       currentDay = currentDay.plus({ days: 1 })
     ) {
+      if (currentDay.weekday >= 6) continue
       yield {
         date: currentDay,
         hours: [...makeHours(currentDay)]
