@@ -14,7 +14,7 @@ html(lang="en")
         = year
       p= "Generated on " + new Date()
 
-    mixin daybox(date,showExtra)
+    mixin daybox(date)
       .daybox
         p.date-info
           span= date.toLocaleString({ day: "numeric" })
@@ -42,7 +42,7 @@ html(lang="en")
 
     each day in days
       .page.left
-        +daybox(day.date,true)
+        +daybox(day.date)
 
         table.hourlist(cellspacing="0" cellpadding="0")
           colgroup
@@ -67,7 +67,7 @@ html(lang="en")
                 td
 
       .page.right
-        +daybox(day.date, false)
+        +daybox(day.date)
 
         table.hourlist(cellspacing="0" cellpadding="0")
           colgroup
