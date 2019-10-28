@@ -13,6 +13,7 @@ html(lang="en")
         |
         = year
       p= "Generated on " + new Date()
+      p For best printing results, use Acrobat Reader. Other readers create minor visual artifacts.
 
     mixin daybox(date)
       .daybox
@@ -42,7 +43,6 @@ html(lang="en")
 
     each day in days
       .page
-        +daybox(day.date)
 
         table.hourlist(cellspacing="0" cellpadding="0")
           colgroup
@@ -66,8 +66,6 @@ html(lang="en")
               td Hatch
               td
 
-
-
           tbody
             each hour in day.hours
               tr(class={active: hour.active})
@@ -79,3 +77,5 @@ html(lang="en")
                 td
                 td
                 +hourcell(hour)
+
+        +daybox(day.date)
