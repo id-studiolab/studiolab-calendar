@@ -7,25 +7,17 @@
   break-after: page;
 }
 
-.symmetric-flex() {
-  flex-direction: row;
-  .page.right & {
-    flex-direction: row-reverse;
-  }
-}
-
 .daybox {
   background: rgb(230, 230, 230);
   font-weight: bolder;
-  text-align: outside;
+  text-align: left;
   text-transform: lowercase;
 
   width: 100%;
   height: 2cm;
 
   display: flex;
-  .symmetric-flex();
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   align-items: center;
 
   .date-info {
@@ -46,21 +38,20 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    margin-outside: 4mm;
+    margin-left: 4mm;
 
     font-size: 1.2em;
 
     p {
       margin: 0;
       padding: 0;
-      text-align: outside;
+      text-align: left;
       width: 100%;
     }
 
     > * {
       display: flex;
-      .symmetric-flex();
-      flex-wrap: nowrap;
+      flex-flow: row nowrap;
       align-items: baseline;
     }
   }
