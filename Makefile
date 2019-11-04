@@ -13,8 +13,7 @@ all: $(PDF_OUTPUT_FILE)
 
 $(PDF_OUTPUT_FILE): $(HTML_OUTPUT_FILE) $(wildcard $(dir $(HTML_OUTPUT_FILE))/*)
 	mkdir -p $(dir $@)
-	prince $< --javascript -o $@
-	-echo "Prince done"
+	node src/generate-pdf.js $< $@
 
 $(HTML_OUTPUT_FILE): $(ENTRY_FILE_DEPENDENCIES) node_modules check
 	mkdir -p $(dir $@)

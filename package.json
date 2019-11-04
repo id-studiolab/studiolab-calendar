@@ -1,11 +1,13 @@
 {
   "private": true,
   "devDependencies": {
+    "@types/node": "^12.12.5",
     "chokidar-cli": "^2.0.0",
     "less": "^3.10.3",
     "luxon": "^1.19.3",
     "parcel-bundler": "^1.12.4",
     "pug": "^2.0.4",
+    "puppeteer": "^2.0.0",
     "typescript": "^3.6.4"
   }
 }

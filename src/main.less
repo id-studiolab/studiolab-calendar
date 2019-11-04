@@ -1,17 +1,9 @@
-@prince-pdf {
-  prince-pdf-page-layout: single-page;
-}
-
-@page {
-  size: A4;
-  margin: 5mm;
-}
-
 * {
   font-family: "Lato";
 }
 
 .page {
+  page-break-after: always;
   break-after: page;
 }
 
@@ -95,7 +87,7 @@
   tbody,
   .hour-col,
   .hour-cell {
-    font-variant: prince-opentype(tnum);
+    font-variant-numeric: tabular-nums;
     text-align: center;
   }
 

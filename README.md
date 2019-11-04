@@ -10,7 +10,6 @@ but hasn't been tested).
 
 - `make` (tested with `GNU Make 3.81`)
 - [`node.js`](https://nodejs.org) (tested with `v12.12.0`)
-- [`prince`](https://princexml.com) (tested with `12.5`)
 
 The current stylesheet also uses the font Lato ([downloadable from Google Fonts](https://fonts.google.com/specimen/Lato)).
 
