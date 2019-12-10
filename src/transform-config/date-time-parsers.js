@@ -25,27 +25,27 @@ const makeDayInterval = interval => {
   )
 }
 
-/** @type {(pattern: import("./types").InputData.HourPattern) => (moment: luxon.DateTime) => boolean} */
+/** @type {(pattern: import("./types").ConfigData.HourPattern) => (moment: luxon.DateTime) => boolean} */
 const hourPatternMatcher = pattern => {
   const hourInterval = makeHourInterval(pattern)
   return ({ hour, minute }) =>
     hourInterval.contains(hourInterval.start.set({ hour, minute }))
 }
 
-/** @type {(pattern: import("./types").InputData.HourPattern) => (moment: luxon.DateTime) => boolean} */
+/** @type {(pattern: import("./types").ConfigData.HourPattern) => (moment: luxon.DateTime) => boolean} */
 const dayPatternMatcher = pattern => {
   const dayInterval = makeDayInterval(pattern)
   return ({ year, month, day }) =>
     dayInterval.contains(dayInterval.start.set({ year, month, day }))
 }
 
-/** @type {(patterns: (import("./types").InputData.HourPattern)[]) => (moment: luxon.DateTime) => boolean} */
+/** @type {(patterns: (import("./types").ConfigData.HourPattern)[]) => (moment: luxon.DateTime) => boolean} */
 const matchesAnyHour = patterns => {
   const matchers = patterns.map(hourPatternMatcher)
   return moment => matchers.some(matcher => matcher(moment))
 }
 
-/** @type {(patterns: (import("./types").InputData.DayPattern)[]) => (moment: luxon.DateTime) => boolean} */
+/** @type {(patterns: (import("./types").ConfigData.DayPattern)[]) => (moment: luxon.DateTime) => boolean} */
 const matchesAnyDay = patterns => {
   const matchers = patterns.map(dayPatternMatcher)
   return moment => matchers.some(matcher => matcher(moment))
