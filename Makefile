@@ -1,26 +1,22 @@
-ENTRY_FILE := src/template/index.pug
-ENTRY_CONFIG_FILE := pug.config.js
-HTML_OUTPUT_FILE := node_modules/.build/index.html
-PDF_OUTPUT_FILE := out/calendar.pdf
+SRC_FOLDER := src
+TEMPLATE_FILE := $(SRC_FOLDER)/template/index.pug
+TEMPLATE_FOLDER := $(dir $(TEMPLATE_FILE))
+OUTPUT_FILE := out/calendar.pdf
 DATA_FILE := config-data.js
-PDF_GENERATOR_SCRIPT := src/generate-pdf.js
+PDF_GENERATOR_SCRIPT := $(SRC_FOLDER)/generate-pdf.js
 
 NODE_BIN := node_modules/.bin
-ENTRY_FILE_DEPENDENCIES := $(ENTRY_FILE) $(DATA_FILE) $(wildcard $(dir $(ENTRY_FILE))/*) $(ENTRY_CONFIG_FILE)
+ENTRY_FILE_DEPENDENCIES := $(wildcard $(SRC_FOLDER)/**/*) $(DATA_FILE)
+
 
 .PHONY: all
-all: $(PDF_OUTPUT_FILE)
+all: $(OUTPUT_FILE)
 
 
-$(PDF_OUTPUT_FILE): $(HTML_OUTPUT_FILE) $(wildcard $(dir $(HTML_OUTPUT_FILE))/*)
-	mkdir -p $(dir $@)
-	node $(PDF_GENERATOR_SCRIPT) $< $@
-
-$(HTML_OUTPUT_FILE): $(ENTRY_FILE_DEPENDENCIES) node_modules check
-	mkdir -p $(dir $@)
+$(OUTPUT_FILE): $(ENTRY_FILE_DEPENDENCIES)
 	$(MAKE) check
-	$(NODE_BIN)/parcel build --out-dir $(dir $@) --no-cache --no-content-hash --no-minify --no-source-maps --public-url './' $<
-
+	mkdir -p $(dir $@)
+	node $(PDF_GENERATOR_SCRIPT) $(TEMPLATE_FOLDER) $(TEMPLATE_FILE) $(DATA_FILE) $(OUTPUT_FILE)
 
 node_modules: package-lock.json package.json
 	-rm -rf node_modules
@@ -37,5 +33,4 @@ check: node_modules
 
 .PHONY: clean
 clean:
-	-rm -r $(dir $(HTML_OUTPUT_FILE))
-	-rm -r $(dir $(PDF_OUTPUT_FILE))
+	-rm -r $(dir $(OUTPUT_FILE))
