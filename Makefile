@@ -1,5 +1,5 @@
 SRC_FOLDER := src
-TEMPLATE_FILE := $(SRC_FOLDER)/template/index.pug
+TEMPLATE_FILE := $(SRC_FOLDER)/template/index.ejs
 TEMPLATE_FOLDER := $(dir $(TEMPLATE_FILE))
 OUTPUT_FILE := out/calendar.pdf
 DATA_FILE := config-data.js

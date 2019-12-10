@@ -1,11 +1,11 @@
 // @ts-check
 
 const { transformConfig } = require("./transform-config")
+const ejs = require("ejs")
 const execa = require("execa")
 const fse = require("fs-extra")
 const path = require("path")
 const pptr = require("puppeteer")
-const pug = require("pug")
 const tempy = require("tempy")
 const url = require("url")
 
@@ -29,7 +29,7 @@ const OUTPUT_FILE = path.resolve(process.argv[5])
     await fse.copy(TEMPLATE_FOLDER, bundlerIntermediateDir)
 
     console.log("Generating HTML")
-    const output = pug.renderFile(TEMPLATE_FILE, { ...templateInputData })
+    const output = await ejs.renderFile(TEMPLATE_FILE, templateInputData)
 
     console.log("Writing HTML")
     const intermediateFile = path.resolve(
