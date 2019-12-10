@@ -21,9 +21,9 @@ $(HTML_OUTPUT_FILE): $(ENTRY_FILE_DEPENDENCIES) node_modules check
 	$(NODE_BIN)/parcel build --out-dir $(dir $@) --no-cache --no-content-hash --no-minify --no-source-maps --public-url './' $<
 
 
-node_modules: yarn.lock package.json
+node_modules: package-lock.json package.json
 	-rm -rf node_modules
-	npx yarn
+	npm install
 
 
 .PHONY: watch
