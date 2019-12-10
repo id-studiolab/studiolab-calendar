@@ -1,9 +1,9 @@
 // @ts-check
 const luxon = require("luxon")
-const matchers = require("./data-matchers")
+const matchers = require("./date-time-parsers")
 
-/** @type {(data: import("../types/data").InputData) => import("../types/data").TemplateLocals} */
-const synthesize = data => {
+/** @type {(data: import("./types").InputData) => import("./types").TemplateLocals} */
+const transformConfig = data => {
   const isActiveMoment = (() => {
     const isActiveHour = matchers.matchesAnyHour(data.active_hours)
     /** @type { (moment: luxon.DateTime) => boolean } */
@@ -32,7 +32,7 @@ const synthesize = data => {
     return { makeStartHourOnDay, makeEndHourOnDay }
   })()
 
-  /** @type { (initialHour: luxon.DateTime) => Iterable<import("../types/data").TemplateLocals.Hour> } */
+  /** @type { (initialHour: luxon.DateTime) => Iterable<import("./types").TemplateLocals.Hour> } */
   const makeHours = function*(day) {
     for (
       let currentHour = makeStartHourOnDay(day),
@@ -47,7 +47,7 @@ const synthesize = data => {
     }
   }
 
-  /** @type { (initialDate: luxon.DateTime) => Iterable<import("../types/data").TemplateLocals.Day> } */
+  /** @type { (initialDate: luxon.DateTime) => Iterable<import("./types").TemplateLocals.Day> } */
   const makeDays = function*(initialDay) {
     const duringYear = initialDay.year
     for (
@@ -63,7 +63,7 @@ const synthesize = data => {
     }
   }
 
-  /** @type import("../types/data").TemplateLocals */
+  /** @type import("./types").TemplateLocals */
   const locals = {
     year: data.year,
     days: [
@@ -80,4 +80,4 @@ const synthesize = data => {
   return locals
 }
 
-exports.synthesize = synthesize
+exports.transformConfig = transformConfig

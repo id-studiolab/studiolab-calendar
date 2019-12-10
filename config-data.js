@@ -1,6 +1,6 @@
 // @ts-check
 
-/** @type {import("./types/data").InputData} */
+/** @type {import("./src/transform-config/types").InputData} */
 const data = {
   // Year for the calendar
   year: 2020,

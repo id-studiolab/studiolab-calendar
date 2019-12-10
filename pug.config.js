@@ -1,9 +1,9 @@
 // @ts-check
 
-const data = require("./data.js")
-const { synthesize } = require("./src/data-synthesize")
+const data = require("./config-data.js")
+const { transformConfig } = require("./src/transform-config")
 
-const locals = synthesize(data)
+const locals = transformConfig(data)
 exports.locals = locals
 
 if (require.main === module) {

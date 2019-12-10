@@ -1,8 +1,9 @@
-ENTRY_FILE := src/index.pug
+ENTRY_FILE := src/template/index.pug
 ENTRY_CONFIG_FILE := pug.config.js
 HTML_OUTPUT_FILE := node_modules/.build/index.html
 PDF_OUTPUT_FILE := out/calendar.pdf
-DATA_FILE := data.js
+DATA_FILE := config-data.js
+PDF_GENERATOR_SCRIPT := src/generate-pdf.js
 
 NODE_BIN := node_modules/.bin
 ENTRY_FILE_DEPENDENCIES := $(ENTRY_FILE) $(DATA_FILE) $(wildcard $(dir $(ENTRY_FILE))/*) $(ENTRY_CONFIG_FILE)
@@ -13,7 +14,7 @@ all: $(PDF_OUTPUT_FILE)
 
 $(PDF_OUTPUT_FILE): $(HTML_OUTPUT_FILE) $(wildcard $(dir $(HTML_OUTPUT_FILE))/*)
 	mkdir -p $(dir $@)
-	node src/generate-pdf.js $< $@
+	node $(PDF_GENERATOR_SCRIPT) $< $@
 
 $(HTML_OUTPUT_FILE): $(ENTRY_FILE_DEPENDENCIES) node_modules check
 	mkdir -p $(dir $@)
