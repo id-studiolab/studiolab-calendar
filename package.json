@@ -1,7 +1,6 @@
 {
   "private": true,
-  "devDependencies": {
-    "@types/node": "^12.12.5",
+  "dependencies": {
     "chokidar-cli": "^2.0.0",
     "less": "^3.10.3",
     "luxon": "^1.19.3",
@@ -9,5 +8,10 @@
     "pug": "^2.0.4",
     "puppeteer": "^2.0.0",
     "typescript": "^3.6.4"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.5",
+    "@prettier/plugin-pug": "^1.1.0",
+    "prettier": "^1.19.1"
   }
 }

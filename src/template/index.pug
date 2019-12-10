@@ -3,48 +3,52 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     title Calendar
-    link(rel="stylesheet" href="./main.less")
+    link(rel="stylesheet", href="./main.less")
 
   body
-
     .page.cover
       h1
         | StudioLab Calendar
         |
         = year
-      p= "Generated on " + new Date()
+      p
+        | Generated on
+        |
+        = new Date()
       p For best printing results, use Acrobat Reader. Other readers create minor visual artifacts.
 
     mixin daybox(date)
       .daybox
         p.date-info
-          span= date.toLocaleString({ day: "numeric" })
+          span= date.toLocaleString({ day: 'numeric' })
 
         .extra-info
           p.month-info
             span &nbsp;
-            span= date.toLocaleString({ month: "long" })
+            span= date.toLocaleString({ month: 'long' })
 
           p.week-info
-            span= date.toLocaleString({ weekday: "long" })
+            span= date.toLocaleString({ weekday: 'long' })
             span ,&nbsp;
-            span= "week " + date.weekNumber
+            span
+              | week
+              |
+              = date.weekNumber
 
     mixin hourcell(hour)
       td.hour-cell
-        - var hour_num = hour.date.hour.toString("10")
-        - var hour_min = hour.date.minute.toString("10").padStart(2, "0")
+        - var hour_num = hour.date.hour.toString('10')
+        - var hour_min = hour.date.minute.toString('10').padStart(2, '0')
         - var emptyMin = hour.date.minute === 0
-        span.hour-num.empty= hour_num.length === 1 ? "0" : ""
+        span.hour-num.empty= hour_num.length === 1 ? '0' : ''
         span.hour-num= hour_num
-        span(class={"empty": emptyMin})
+        span(class={ empty: emptyMin })
           span.hour-sep :
           span.hour-min= hour_min
 
     each day in days
       .page
-
-        table.hourlist(cellspacing="0" cellpadding="0")
+        table.hourlist(cellspacing="0", cellpadding="0")
           colgroup
             col.hour-col
             col
@@ -68,7 +72,7 @@ html(lang="en")
 
           tbody
             each hour in day.hours
-              tr(class={active: hour.active})
+              tr(class={ active: hour.active })
                 +hourcell(hour)
                 td
                 td
