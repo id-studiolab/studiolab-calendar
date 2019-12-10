@@ -14,6 +14,7 @@ void (async () => {
   const page = await browser.newPage()
   console.log("Opening HTML file")
   await page.goto(INPUT_FILE)
+  // @ts-ignore
   await page.emulateMedia("print")
   console.log("Printing to PDF")
   await page.pdf({
