@@ -1,7 +1,7 @@
 # StudioLab Calendar
 
 This is a set of scripts that generate an HTML file, which gets turned into a
-PDF through [Prince](https://princexml.com).
+PDF through [puppeteer](https://pptr.dev).
 
 ## Prerequisites
 
@@ -11,13 +11,14 @@ but hasn't been tested).
 - `make` (tested with `GNU Make 3.81`)
 - [`node.js`](https://nodejs.org) (tested with `v12.12.0`)
 
-The current stylesheet also uses the font Lato ([downloadable from Google Fonts](https://fonts.google.com/specimen/Lato)).
+The current stylesheet also uses the font Lato
+([downloadable from Google Fonts](https://fonts.google.com/specimen/Lato)).
 
 ## Usage
 
-Edit the [`data.js`](./data.js) file with the necessary parameters. You can run
-`make check` from the command-line to test that the file is accepted by the
-program.
+Edit the [`config-data.js`](./config-data.js) file with the necessary
+parameters. You can run `make check` from the command-line to test that the file
+is accepted by the program.
 
 Then you run `make all` to create the PDF, which will be placed at
 `out/calendar.pdf`.
