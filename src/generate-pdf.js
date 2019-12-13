@@ -41,7 +41,7 @@ const OUTPUT_FILE = path.resolve(process.argv[5])
 
     console.log("Bundling assets")
     await execa(
-      "parcel",
+      require.resolve("parcel-bundler/bin/cli"),
       [
         "build",
         "-d",
