@@ -73,7 +73,7 @@ export class Params {
   isActiveHour = (hour: Date) =>
     dateFns.isWithinInterval(hour, {
       start: dateFns.setHours(dateFns.startOfDay(hour), this.start_active_hour),
-      end: dateFns.setHours(dateFns.endOfDay(hour), this.end_active_hour),
+      end: dateFns.setHours(dateFns.startOfDay(hour), this.end_active_hour),
     })
 }
 
