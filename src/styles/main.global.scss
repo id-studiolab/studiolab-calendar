@@ -2,6 +2,11 @@
   font-family: "Lato";
 }
 
+@page {
+  size: A4 portrait;
+  margin: 5mm;
+}
+
 .page {
   page-break-after: always;
   break-after: page;
@@ -70,10 +75,6 @@
   margin-bottom: 0.2cm;
 
   colgroup {
-    col {
-      width: 100% / 6;
-    }
-
     .hour-col {
       width: 0;
     }

@@ -1,2 +1,6 @@
-/node_modules/
-/out/
+node_modules
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+out/*
+.next/*

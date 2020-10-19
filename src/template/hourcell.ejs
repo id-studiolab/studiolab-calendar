@@ -1,6 +1,0 @@
-<td class="hour-cell">
-  <% var hour_num = hour.date.hour.toString('10') %>
-  <% var hour_min = hour.date.minute.toString('10').padStart(2, '0') %>
-  <% var emptyMin = hour.date.minute === 0 %>
-  <span class="hour-num empty"><%= hour_num.length === 1 ? '0' : '' %></span><span class="hour-num"><%= hour_num %></span><span class="<%= emptyMin ? 'empty' : '' %>"><span class="hour-sep">:</span><span class="hour-min"><%= hour_min %></span></span>
-</td>

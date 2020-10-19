@@ -1,0 +1,15 @@
+{
+  "extends": "@cprecioso/tsconfig/esm",
+  "compilerOptions": {
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "esModuleInterop": true
+  },
+  "include": ["next-env.d.ts", "src/**/*", "types/**/*"],
+  "exclude": ["node_modules"]
+}
